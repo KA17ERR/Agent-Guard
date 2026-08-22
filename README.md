@@ -37,16 +37,16 @@ No hardcoded results, no fake pass/fail — every score in AgentGuard is compute
 
 ## Key Features
 
-- 🧪 **AI-generated test scenarios** — an LLM writes realistic and adversarial test cases from the agent's own system prompt and tool list
-- ⚔️ **Adversarial testing** — prompt injection, instruction hijacking, tool misuse, and goal-drift scenarios generated alongside normal-task baselines
-- 📦 **Sandbox execution** — every scenario runs against the agent in an isolated environment
-- 🎭 **Mock tools** — every tool call is mocked; nothing real is ever refunded, deleted, cancelled, or emailed
-- 🔍 **Full trace collection** — every LLM decision, tool call, and tool response is captured, step by step
-- 🚦 **Automated failure classification** — 10-category taxonomy covering safety, tool reliability, goal adherence, and truthfulness
-- 🔴 **Destructive action testing** — tools marked destructive or high/critical risk are specifically targeted and highlighted wherever they appear
-- 📊 **Reliability scoring** — a transparent, reproducible 0–100 score across five weighted dimensions
-- 🔁 **Deterministic replay** — re-run any historical trace's tool calls and confirm the failure reproduces exactly
-- 📈 **Regression tracking** — compare two agent versions and see exactly what got better or worse
+- **AI-generated test scenarios** — an LLM writes realistic and adversarial test cases from the agent's own system prompt and tool list
+-  **Adversarial testing** — prompt injection, instruction hijacking, tool misuse, and goal-drift scenarios generated alongside normal-task baselines
+-  **Sandbox execution** — every scenario runs against the agent in an isolated environment
+-  **Mock tools** — every tool call is mocked; nothing real is ever refunded, deleted, cancelled, or emailed
+-  **Full trace collection** — every LLM decision, tool call, and tool response is captured, step by step
+-  **Automated failure classification** — 10-category taxonomy covering safety, tool reliability, goal adherence, and truthfulness
+-  **Destructive action testing** — tools marked destructive or high/critical risk are specifically targeted and highlighted wherever they appear
+-  **Reliability scoring** — a transparent, reproducible 0–100 score across five weighted dimensions
+-  **Deterministic replay** — re-run any historical trace's tool calls and confirm the failure reproduces exactly
+-  **Regression tracking** — compare two agent versions and see exactly what got better or worse
 
 ---
 
@@ -169,7 +169,7 @@ You configure an agent once — name, domain, system prompt, and tools — and e
 Clone the repository, then set up each half of the app.
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/KA17ERR/Agent-Guard.git
 cd agentguard
 ```
 
