@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+  body {
+    @apply bg-canvas text-ink;
+  }
+  :focus-visible {
+    outline: 2px solid theme("colors.accent.DEFAULT");
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: theme("colors.accent.soft");
+  }
+}
+
+@layer utilities {
+  .mono {
+    font-family: theme("fontFamily.mono");
+  }
+}
