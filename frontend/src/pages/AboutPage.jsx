@@ -40,11 +40,19 @@ export default function AboutPage() {
 
       <Card>
         <CardHeader title="About AgentGuard" subtitle="What this tool is for." />
-        <p className="text-sm leading-relaxed text-ink-soft">
+         <p className="text-sm leading-relaxed text-ink-soft">
           AgentGuard is a reliability-testing tool for AI agents. It generates adversarial and
           realistic test scenarios from an agent's system prompt, domain, and tools, runs them
           against the agent, and reports where it fails — prompt injection, tool misuse, goal
           drift, hallucination, and more — so issues get caught before they reach production.
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+          Most teams ship an agent after testing a handful of happy-path conversations by hand.
+          That catches obvious bugs, but it says nothing about what happens when a user is vague,
+          adversarial, or simply asks for something the agent should refuse. AgentGuard exists to
+          close that gap — it treats reliability testing the way traditional software treats unit
+          testing: automated, repeatable, and run before every release rather than after an
+          incident.
         </p>
       </Card>
 
