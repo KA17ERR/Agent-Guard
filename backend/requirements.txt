@@ -8,3 +8,7 @@ httpx==0.27.2
 pytest==8.3.3
 openai==1.51.0
 google-generativeai==0.8.3
+# Postgres driver — only used if DATABASE_URL points at postgres:// (see
+# DEPLOYMENT.md). Harmless to have installed even when running SQLite
+# locally; database.py picks the right behavior based on DATABASE_URL.
+psycopg2-binary==2.9.10

@@ -27,7 +27,7 @@ export default function Modal({ open, title, children, onClose }) {
         aria-modal="true"
         aria-labelledby={titleId}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-md rounded-lg border border-line bg-surface p-5 shadow-card"
+        className="w-full max-w-md rounded-lg border border-line/70 bg-surface/95 backdrop-blur-sm p-5 shadow-card"
       >
         <div className="mb-3 flex items-start justify-between">
           <h3 id={titleId} className="text-sm font-semibold text-ink">

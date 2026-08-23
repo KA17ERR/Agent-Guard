@@ -8,6 +8,7 @@ import Button from "../../components/ui/Button";
 import Spinner from "../../components/ui/Spinner";
 import ErrorBanner from "../../components/ui/ErrorBanner";
 import EmptyState from "../../components/ui/EmptyState";
+import RevealOnScroll from "../../components/ui/RevealOnScroll";
 import Icon from "../../components/ui/Icon";
 import CategoryLegend from "./CategoryLegend";
 import ScenarioCard from "./ScenarioCard";
@@ -257,8 +258,10 @@ export default function ScenarioGenerationPage() {
           </div>
 
           <div className="space-y-3">
-            {existingScenarios.map((scenario) => (
-              <ScenarioCard key={scenario.id} scenario={scenario} />
+            {existingScenarios.map((scenario, i) => (
+              <RevealOnScroll key={scenario.id} delay={Math.min(i, 6) * 0.06}>
+                <ScenarioCard scenario={scenario} />
+              </RevealOnScroll>
             ))}
           </div>
         </Card>
@@ -278,8 +281,10 @@ export default function ScenarioGenerationPage() {
           </div>
 
           <div className="space-y-3">
-            {result.scenarios.map((scenario) => (
-              <ScenarioCard key={scenario.id} scenario={scenario} />
+            {result.scenarios.map((scenario, i) => (
+              <RevealOnScroll key={scenario.id} delay={Math.min(i, 6) * 0.06}>
+                <ScenarioCard scenario={scenario} />
+              </RevealOnScroll>
             ))}
           </div>
         </Card>

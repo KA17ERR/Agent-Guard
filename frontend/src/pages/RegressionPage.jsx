@@ -32,7 +32,7 @@ function RunSelect({ label, runs, value, onChange }) {
         id={selectId}
         value={value || ""}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-md border border-line bg-white px-3 py-2 text-sm text-ink focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+        className="w-full rounded-md border border-line bg-surface px-3 py-2 text-sm text-ink focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
       >
         <option value="" disabled>
           Select a test run…

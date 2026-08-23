@@ -49,7 +49,7 @@ function Field({ label, error, hint, children }) {
 }
 
 const inputClass =
-  "w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:border-accent";
+  "w-full rounded-md border bg-surface text-ink px-3 py-2 text-sm placeholder:text-ink-faint focus:outline-none focus:border-accent";
 
 export default function AgentFormPage() {
   const { agentId } = useParams();

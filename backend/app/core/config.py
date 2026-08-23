@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     openai_model: str = "gpt-4o-mini"
 
     gemini_api_key: str = Field(default="", repr=False)
-    gemini_model: str = "gemini-1.5-flash"
+    gemini_model: str = "gemini-3.6-flash"
 
     # --- Database ---
     database_url: str = "sqlite:///./agentguard.db"
