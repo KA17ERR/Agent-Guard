@@ -49,8 +49,8 @@ const waitForFonts = async font => {
 
 const ParticleText = ({
   text = 'React Bits',
-  particleSize = 2,
-  density = 4,
+  particleSize = 3,
+  density = 2,
   color = '#ffffff',
   highlightColor = '#e8e5ed',
   scatter = 180,

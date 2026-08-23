@@ -47,18 +47,53 @@ export default function ScenarioGenerationPage() {
       .catch((err) => setAgentsError(err.message));
   }, []);
 
-  // Load full agent detail (system prompt, tools) whenever the selection changes.
+  // Load full agent detail (system prompt, tools), then — only once that
+  // succeeds — fetch previously generated scenarios for this agent, so
+  // they show up even without generating anything new in this session.
+  // These two used to be separate, uncoordinated effects; when the
+  // scenarios fetch resolved before the agent-detail fetch, addScenarios()
+  // was called with a not-yet-loaded agent, which is what caused agent
+  // selection to break and scenarios to never get saved into context.
+  // Doing this as one sequential chain (agent first, then scenarios)
+  // guarantees addScenarios always receives the real, loaded agent.
   useEffect(() => {
+    setResult(null);
     if (!selectedAgentId) {
       setSelectedAgent(null);
+      setExistingScenarios(null);
       return;
     }
+    let cancelled = false;
     setAgentLoading(true);
+    setExistingLoading(true);
+    setExistingError("");
+
     agentsApi
       .get(selectedAgentId)
-      .then(setSelectedAgent)
-      .catch((err) => setAgentsError(err.message))
-      .finally(() => setAgentLoading(false));
+      .then((agentData) => {
+        if (cancelled) return null;
+        setSelectedAgent(agentData);
+        setAgentLoading(false);
+        return scenariosApi.list(selectedAgentId).then((scenarios) => {
+          if (cancelled) return;
+          setExistingScenarios(scenarios);
+          if (scenarios.length > 0) {
+            addScenarios(agentData, scenarios);
+          }
+        });
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setAgentsError(err.message);
+        setAgentLoading(false);
+      })
+      .finally(() => {
+        if (!cancelled) setExistingLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [selectedAgentId]);
 
   // Real elapsed-time counter while the (synchronous) generation call is in
@@ -71,34 +106,6 @@ export default function ScenarioGenerationPage() {
     const interval = setInterval(() => setElapsedSeconds((s) => s + 1), 1000);
     return () => clearInterval(interval);
   }, [generating]);
-
-  // Fetch previously generated scenarios for this agent whenever the
-  // selection changes, so they show up even without generating anything
-  // new in this session. Also syncs them into RunContext so other pages
-  // (Test Execution, Trace Viewer) can look them up by id.
-  useEffect(() => {
-    setResult(null);
-    if (!selectedAgentId) {
-      setExistingScenarios(null);
-      return;
-    }
-    setExistingLoading(true);
-    setExistingError("");
-    scenariosApi
-      .list(selectedAgentId)
-      .then((scenarios) => {
-        setExistingScenarios(scenarios);
-        if (scenarios.length > 0) {
-          addScenarios(selectedAgent, scenarios);
-        }
-      })
-      .catch((err) => setExistingError(err.message))
-      .finally(() => setExistingLoading(false));
-    // selectedAgent is intentionally excluded: it loads asynchronously
-    // right after selectedAgentId changes, and we only need whichever
-    // value is current at the time addScenarios actually runs above.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedAgentId]);
 
   const handleGenerate = async () => {
     setGenerateError("");
@@ -223,7 +230,7 @@ export default function ScenarioGenerationPage() {
             title="Generate test suite"
             subtitle="Calls the configured LLM provider to write realistic and adversarial scenarios for this agent."
           />
-          <Button onClick={handleGenerate} disabled={!selectedAgentId} loading={generating}>
+          <Button onClick={handleGenerate} disabled={!selectedAgent || agentLoading} loading={generating}>
             <Icon name="flask" className="h-4 w-4" />
             Generate Test Suite
           </Button>

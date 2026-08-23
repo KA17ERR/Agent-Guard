@@ -23,15 +23,15 @@ export const TEAM = [
     photo: "/team/om.jpeg", // TODO: add frontend/public/team/om.jpg
     email: "omalet7116@gmail.com", // TODO: replace with real email
     linkedin: "https://www.linkedin.com/in/om-aletiwar-770512298", // TODO: replace with real LinkedIn URL
-    github: "https://github.com/om-aletiwar", // TODO: replace with real GitHub URL
-    instagram: "https://www.instagram.com/om_srinivas7/", // TODO: replace with real Instagram URL
+    github: "https://github.com/KA17ERR", // TODO: replace with real GitHub URL
+    instagram: "https://www.instagram.com/om_srinivas7", // TODO: replace with real Instagram URL
   },
   {
     name: "Siddharth AT",
     photo: "/team/siddharth.jpeg", // TODO: add frontend/public/team/siddharth.jpg
-    email: "siddharth.at@example.com", // TODO: replace with real email
-    linkedin: "https://www.linkedin.com/in/siddharth-at", // TODO: replace with real LinkedIn URL
-    github: "https://github.com/siddharth-at", // TODO: replace with real GitHub URL
-    instagram: "https://instagram.com/siddharth.at", // TODO: replace with real Instagram URL
+    email: "atsiddharth9@gmail.com", // TODO: replace with real email
+    linkedin: "https://www.linkedin.com/in/siddharth-a-t-a7a07b3a8", // TODO: replace with real LinkedIn URL
+    github: "https://github.com/siddharth24-12", // TODO: replace with real GitHub URL
+    instagram: "https://instagram.com/itz_me.sat", // TODO: replace with real Instagram URL
   },
 ];
